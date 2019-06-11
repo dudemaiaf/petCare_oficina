@@ -78,8 +78,8 @@ For detailed explanation on how things work, checkout the [guide](http://vuejs-t
 
 ### User Table
 
-`CREATE TABLE users ( `
-`  ID SERIAL PRIMARY KEY,`
+'CREATE TABLE users ( `
+'  ID SERIAL PRIMARY KEY,
 '  name VARCHAR(30),
 '  email VARCHAR(30)
 ');
