@@ -43,3 +43,69 @@ For detailed explanation on how things work, checkout the [guide](http://vuejs-t
 [LICENSE]: ./LICENSE.md
 [version-badge]: https://img.shields.io/badge/version-1.0.0-blue.svg
 [license-badge]: https://img.shields.io/badge/license-MIT-blue.svg
+
+
+# CRIANDO BANCO LOCAL
+
+## Create a user
+
+### First, we’ll create a role called me and give it a password of password. A role can function as a user or a group, so in this case, we’ll be using it as a user.
+`$ psql postgres`
+
+### We want me to be able to create a database.
+`postgres=# CREATE ROLE me WITH LOGIN PASSWORD 'password';`
+
+### You can run \du to list all roles/users.
+`postgres=# ALTER ROLE me CREATEDB;`
+
+### Now we want to create a database from the me user. Exit from the default session with \q for quit.
+`postgres=# \q`
+
+### We’re back in our computer’s default Terminal connection. Now we’ll connect postgres with me.
+`psql -d postgres -U me`
+* Instead of postgres=#, our prompt shows postgres=> now, meaning we’re no longer logged in as a superuser.
+
+## Create a database
+
+### We can create a database with the SQL command.
+`postgres=> CREATE DATABASE api;`
+
+### Let’s connect to the new api database with me using the \c (connect) command.
+`postgres=> \c api`
+* Deve aparecer isso: You are now connected to database "api" as user "me".
+
+## Create a table
+
+### User Table
+
+'CREATE TABLE users (
+'  ID SERIAL PRIMARY KEY,
+'  name VARCHAR(30),
+'  email VARCHAR(30)
+');
+
+### Pet Table
+
+'CREATE TABLE pets
+'(
+'  id SERIAL PRIMARY KEY,
+'  active BOOLEAN,
+'  iname VARCHAR (64),
+'  beatmap DOUBLE PRECISION,
+'  locationx INTEGER,
+'  locationy INTEGER,
+'  roam DOUBLE PRECISION,
+'  velocity DOUBLE PRECISION
+')
+
+### Relationship Table
+
+'CREATE TABLE reviews (
+'  id serial,
+'  user_id int NOT NULL,
+'  pet_id int NOT NULL,
+'  breed VARCHAR(30),
+'  PRIMARY KEY (id),
+'  FOREIGN KEY (pet_id) REFERENCES pets(id) ON DELETE CASCADE,
+'  FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+');
