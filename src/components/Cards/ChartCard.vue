@@ -126,7 +126,7 @@
     },
     async mounted () {
       this.updateChartId()
-      const Chartist = await import('chartist')
+      //const Chartist = await import('chartist')
       this.$Chartist = Chartist.default || Chartist
       this.initChart()
     }
