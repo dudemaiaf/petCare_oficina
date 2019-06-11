@@ -78,34 +78,38 @@ For detailed explanation on how things work, checkout the [guide](http://vuejs-t
 
 ### User Table
 
-'CREATE TABLE users ( `
-'  ID SERIAL PRIMARY KEY,
-'  name VARCHAR(30),
-'  email VARCHAR(30)
-');
+```sh
+CREATE TABLE users (
+  ID SERIAL PRIMARY KEY,
+  name VARCHAR(30),
+  email VARCHAR(30)
+);
+```
 
 ### Pet Table
-
-'CREATE TABLE pets
-'(
-'  id SERIAL PRIMARY KEY,
-'  active BOOLEAN,
-'  iname VARCHAR (64),
-'  beatmap DOUBLE PRECISION,
-'  locationx INTEGER,
-'  locationy INTEGER,
-'  roam DOUBLE PRECISION,
-'  velocity DOUBLE PRECISION
-')
+```sh
+CREATE TABLE pets
+(
+  id SERIAL PRIMARY KEY,
+  active BOOLEAN,
+  iname VARCHAR (64),
+  beatmap DOUBLE PRECISION,
+  locationx INTEGER,
+  locationy INTEGER,
+  roam DOUBLE PRECISION,
+  velocity DOUBLE PRECISION
+)
+```
 
 ### Relationship Table
-
-'CREATE TABLE reviews (
-'  id serial,
-'  user_id int NOT NULL,
-'  pet_id int NOT NULL,
-'  breed VARCHAR(30),
-'  PRIMARY KEY (id),
-'  FOREIGN KEY (pet_id) REFERENCES pets(id) ON DELETE CASCADE,
-'  FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
-');
+```sh
+CREATE TABLE reviews (
+  id serial,
+  user_id int NOT NULL,
+  pet_id int NOT NULL,
+  breed VARCHAR(30),
+  PRIMARY KEY (id),
+  FOREIGN KEY (pet_id) REFERENCES pets(id) ON DELETE CASCADE,
+  FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+);
+```
